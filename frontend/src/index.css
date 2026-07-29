@@ -1,10 +1,16 @@
-body {
-  margin: 0;
-  background-color:#ab3018
+:root {
+  --bg-color: #0f0f11;           
+  --navbar-bg: rgba(15, 15, 17, 0.85); 
+  --primary-color: #10b981;      
+  --secondary-color: #059669;     
+  --text-color: #ffffff;          
+  --border-color: #262626;       
+  --hover-color: rgba(255, 255, 255, 0.08); 
 }
 
-*{
-    margin: 0;
-    padding: 0;
-     box-sizing: border-box;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }

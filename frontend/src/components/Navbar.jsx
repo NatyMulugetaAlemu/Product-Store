@@ -1,26 +1,47 @@
-import React from 'react'
+import { Link, useResolvedPath } from "react-router-dom";
+import { ShoppingBagIcon, ShoppingCartIcon, LogOut } from "lucide-react";
 import "../assets/styles/Navbar.css";
 
-const Navbar = () => {
-   return (
-    <nav className="navbar">
-      <div className="logo">
-        MyStore
-      </div>
+function Navbar() {
+  const { pathname } = useResolvedPath();
+  const isHomePage = pathname === "/";
 
-     
+  return (
+    <div className="navbar">
+      {/* LOGO */}
 
-      <div className="nav-actions">
-        <button className="login-btn">
-          Login
-        </button>
+        <Link to="/" className="logo-link">
+          <div className="logo">
+            <ShoppingCartIcon size={36} color="var(--primary-color)" />
 
-        <button className="signup-btn">
-          Sign Up
-        </button>
-      </div>
-    </nav>
+            <span className="logo-text">
+              POSGRESTORE
+            </span>
+          </div>
+        </Link>
+
+
+      {/* RIGHT SECTION */}
+
+      {isHomePage && (
+        <div className="right-Side">
+        
+            <div className="cart-button">
+              <ShoppingBagIcon size={29} color="var(--primary-color)" />
+              <span className="cart-badge">
+                {/* {products.length} */}
+                8
+              </span>
+            </div>
+          
+          <div>
+            <LogOut size={38} color="var(--primary-color)" />
+          </div>
+        </div>
+      )}
+
+    </div>
   );
-};
+}
 
 export default Navbar;

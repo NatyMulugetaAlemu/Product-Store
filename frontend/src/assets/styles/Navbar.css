@@ -1,81 +1,171 @@
-
-
 .navbar {
-    height: 70px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 50px;
-
-   background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+width: 100%;
+height: 6rem;
+position: sticky;
+top: 0;
+left: 0;
+margin: 0 auto; /* FIX #1: Keep navbar centered on screens > 1280px */
+padding:0 5%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+background: var(--navbar-bg);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+max-width: 1280px;
+box-sizing: border-box; /* Good practice to prevent padding width overflow */
+ position: relative; 
 }
 
 
-/* Logo */
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+
+  /*  ADJUST LENGTH HERE (e.g., 90%, 80%, or 1000px) */
+  width: 99%; 
+
+  /*  Keeps border horizontally centered */
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  background-color: var(--secondary-color);
+}
+
+
+
+
+
+
+
+
+.logo-link {
+    text-decoration: none;
+    transition: opacity .3s ease;
+}
+
+.logo-link:hover {
+    opacity: .8;
+}
 
 .logo {
-    font-size: 28px;
-    font-weight: 700;
-    color: #2563eb;
-}
-
-
-/* Links */
-
-.nav-links {
     display: flex;
-    gap: 35px;
-    list-style: none;
+    align-items: center;
+    gap: .5rem;
 }
 
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    transition: 0.3s;
+.logo-text {
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .25rem;
+    /* gradient text */
+    background: linear-gradient(
+        to right,
+        var(--primary-color),
+        var(--secondary-color)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-
-.nav-links a:hover {
-    color: #2563eb;
-}
-
-
-/* Buttons */
-
-.nav-actions {
+.right-Side{
     display: flex;
-    gap: 15px;
+    gap: 1.9rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 
-.login-btn,
-.signup-btn {
-    padding: 10px 20px;
-    border-radius: 8px;
+
+.cart-button {
+    position: relative;
+    padding: .5rem;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 15px;
+    transition: background .3s ease;
 }
 
 
-.login-btn {
-    background: transparent;
-    border: 1px solid #2563eb;
-    color: #2563eb;
+
+.cart-button:hover {
+    background: var(--hover-color);
 }
 
-
-.signup-btn {
-    background: #2563eb;
-    border: none;
+.cart-badge {
+    position: absolute;
+    top: -3px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: .75rem;
+    font-weight: 600;
+    background: var(--primary-color);
     color: white;
 }
 
 
-.signup-btn:hover {
-    background: #1d4ed8;
+
+/* Tablets and Small Laptops (under 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.85rem 4%;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+    letter-spacing: 0.15rem; /* Slightly reduced letter spacing */
+  }
+
+  .right-Side {
+    gap: 1.2rem; /* Reduce gap between cart & logout */
+  }
 }
+
+/* Mobile Phones (under 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 3%;
+  }
+
+  .logo {
+    gap: 0.35rem;
+  }
+
+  .logo-text {
+    font-size: 1.05rem;
+    letter-spacing: 0.08rem; /* Keeps logo on a single line */
+  }
+
+  .right-Side {
+    gap: 0.75rem;
+  }
+
+
+  .cart-badge {
+    top: -2px;
+    right: -2px;
+    width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+  }
+}
+
+/*  Ultra-Small Phones (under 360px - e.g., Galaxy Fold outer screen) */
+@media (max-width: 360px) {
+  .logo-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.04rem;
+  }
+}
+
+

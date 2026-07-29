@@ -9,8 +9,8 @@ export const getProducts = async (req, res) => {
         console.log(products)
         res.status(200).json({ sucess: true, data: products })
     } catch (error) {
-        console.log("Error in getProducts Controller",error)
-        res.status(500).json({ sucess: false,message:error.message })
+        console.log("Error in getProducts Controller", error)
+        res.status(500).json({ sucess: false, message: error.message })
 
     }
 }
@@ -22,24 +22,35 @@ export const createProduct = async (req, res) => {
         if (!name || !price || !image) {
             return res.status(400).json({ sucess: false, message: "All fields are required" })
         }
- 
-        const newProduct=await sql`
+
+        const newProduct = await sql`
            INSERT INTO products(name,price,IMAGE)
            VALUES (${name},${price},${imag})
            RETURNING *
         `
 
         console.log(newProduct)
-        res.ststus(201).json({sucess:true,data:newProduct[0]})
+        res.status(201).json({ sucess: true, data: newProduct[0] })
 
 
     } catch (error) {
-        console.log("Error in createProduct Controller",error)
-        res.status(500).json({ sucess: false,message:error.message })
+        console.log("Error in createProduct Controller", error)
+        res.status(500).json({ sucess: false, message: error.message })
     }
 }
 
 export const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const product = await sql`
+   SELECT * FROM products WHERE id={id}
+`
+
+        res.status(200).json({ sucess: true, data: product[0] })
+    } catch (error) {
+        console.log("Error in createProduct Controller", error)
+        res.status(500).json({ sucess: false, message: error.message })
+    }
 
 }
 

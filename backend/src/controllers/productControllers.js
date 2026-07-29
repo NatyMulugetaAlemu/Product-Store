@@ -66,7 +66,7 @@ export const updateProduct = async (req, res) => {
 
         const updatedProduct = await sql`
        UPDATE products 
-       SET name=${name},price=${price},image=${image})
+       SET name=${name},price=${price},image=${image}
        WHERE id=${id}
        RETURNING *
      `

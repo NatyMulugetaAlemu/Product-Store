@@ -11,6 +11,6 @@ router.get("/:id",getProductById)
 
 router.put("/:id",updateProduct)
 
-router.delete("/",deleteProduct)
+router.delete("/:id",deleteProduct)
 
 export default router
